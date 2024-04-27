@@ -17,6 +17,7 @@ function HomePage({ theme }) {
     navigate('/'); // Redirect to login page
   };
 
+  // Define click handlers for each type of card
   const handleCreateMeetingClick = () => {
     // Navigate to the create meeting component
     navigate('/create-meeting');
@@ -31,7 +32,6 @@ function HomePage({ theme }) {
     // Navigate to the display conference log component
     navigate('/display-conference-log');
   };
-
   return (
     <Grid container component="main" sx={{ height: '100vh' }}>
       <Grid
@@ -69,15 +69,14 @@ function HomePage({ theme }) {
       >
 
         <Box sx={{ display: 'flex', justifyContent: 'space-around', width: '100%' , gap: '20px' }}>
-            <CardCom operation="Create Meeting" description=" Create your own meeting and invite your friends!"/>
-            <CardCom operation="Join Meeting" description="All you need to do is to enter the meeting ID!"/>
-            <CardCom operation="Display Confrence history logs" description="Here you can see the transcriptions of all of your confrences!"/>
+{/* Pass appropriate click handlers to each CardCom component */}
+<CardCom type="cm" operation="Create Meeting" description=" Create your own meeting and invite your friends!" onClick={handleCreateMeetingClick} />
+          <CardCom type="jm" operation="Join Meeting" description="All you need to do is to enter the meeting ID!" onClick={handleJoinMeetingClick} />
+          <CardCom type="dc" operation="Display Conference history logs" description="Here you can see the transcriptions of all of your conferences!" onClick={handleDisplayConferenceLogClick} />
           
         </Box>
         <Box sx={{ my: 8 }}>
-          <Avatar sx={{ m: 1, bgcolor: theme === 'light' ? 'primary.main' : '#ca8a04' }}>
-            <LockOpenOutlinedIcon />
-          </Avatar>
+          
           <Button
             onClick={handleLogout}
             fullWidth

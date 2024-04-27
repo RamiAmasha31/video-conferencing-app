@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa"; // Import icons from react-icons
 import LoginPage from "./components/LoginPage.jsx";
 import HomePage from "./components/HomePage.jsx";
-
+import CreateMeeting from "./components/CreateMeeting.jsx";
+import JoinMeeting from "./components/JoinMeeting.jsx";
 import "./styles/tailwind.css"; // Import Tailwind CSS
 
 const App = () => {
@@ -39,6 +40,16 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<LoginPage theme={themeClass} />} />
           <Route exact path="/home" element={<HomePage theme={themeClass} />} />
+          <Route
+            exact
+            path="/create-meeting"
+            element={<CreateMeeting theme={themeClass} />}
+          />
+          <Route
+            exact
+            path="/join-meeting"
+            element={<JoinMeeting theme={themeClass} />}
+          />
         </Routes>
       </div>
     </Router>

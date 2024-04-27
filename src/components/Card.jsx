@@ -5,15 +5,25 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import workshopImage from "../assets/workshop.png";
- function CardCom({operation,description}) {
+import logImage from "../assets/log.png";
+import joinImage from "../assets/meeting.png";
+ function CardCom({type,operation,description,onClick}) {
+    if(type=='cm'){
+    var img=workshopImage;
+    } else {
+        if(type=='dc'){
+        var img=logImage;}
+        else img=joinImage;
+    }
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} onClick={onClick}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="64"
           width="64"
-          image={workshopImage}
+          image={img}
           alt="green iguana"
         />
         <CardContent>
