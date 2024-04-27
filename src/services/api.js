@@ -11,13 +11,14 @@ const api = axios.create({
   },
 });
 
-export const login = async (username, password) => {
+export const login = async (email, password) => {
+  console.log("im in api, ", email, password);
   try {
     const response = await api.post("/auth/login", {
-      username,
+      email,
       password,
     });
-    return response.data;
+    return response.message;
   } catch (error) {
     throw new Error(error.response.data.message || "Login failed");
   }
