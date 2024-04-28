@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import { Slide, Zoom } from '@mui/material';
 import CardCom from "./Card.jsx"
+import CssBaseline from '@mui/material/CssBaseline';
+
 function HomePage({ theme }) {
   const navigate = useNavigate();
 
@@ -34,21 +36,28 @@ function HomePage({ theme }) {
   };
   return (
     <Grid container component="main" sx={{ height: '100vh' }}>
+      <CssBaseline />
       <Grid
         item
         xs={12}
         sm={4}
         md={7}
         sx={{
-          backgroundColor: theme === 'light' ? 'gray.300' : 'black',
+          position: 'relative',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: theme === 'light' ? 'gray.300' : 'black', // Set background color based on theme
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
-        <Typography variant="h3" sx={{ color: theme === 'light' ? 'black' : '#ca8a04', mt: 4 }}>
-          <span>Welcome to Home Page</span>
-        </Typography>
+        <Box sx={{ position: 'absolute', textAlign: 'center', color: 'white' }}>
+          <Typography variant="h3">Welcome to Your App</Typography>
+          <Typography variant="h6">Where virtual meetings come to life</Typography>
+        </Box>
       </Grid>
       <Grid
         item
@@ -67,7 +76,6 @@ function HomePage({ theme }) {
           padding: 4,
         }}
       >
-
         <Box sx={{ display: 'flex', justifyContent: 'space-around', width: '100%' , gap: '20px' }}>
 {/* Pass appropriate click handlers to each CardCom component */}
 <CardCom type="cm" operation="Create Meeting" description=" Create your own meeting and invite your friends!" onClick={handleCreateMeetingClick} />

@@ -1,34 +1,31 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function JoinMeeting() {
+function JoinMeeting({ theme }) {
   const navigate = useNavigate();
   const [meetingId, setMeetingId] = useState('');
 
-  const handleInputChange = (event) => {
+  const handleMeetingIdChange = (event) => {
     setMeetingId(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Redirect the user to the meeting room with the specified meeting ID
-    navigate(`/meeting/${meetingId}`);
+  const handleJoinMeeting = () => {
+    // Code to join the meeting
+    // Implement WebRTC connection logic here
+    // Retrieve meeting details from Firestore using the meetingId
+    // Exchange signaling data and establish WebRTC connection
+  };
+
+  const handleBack = () => {
+    navigate('/');
   };
 
   return (
     <div>
       <h1>Join Meeting</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="meetingId">Meeting ID:</label>
-        <input
-          type="text"
-          id="meetingId"
-          value={meetingId}
-          onChange={handleInputChange}
-          required
-        />
-        <button type="submit">Join Meeting</button>
-      </form>
+      <input type="text" placeholder="Enter Meeting ID" value={meetingId} onChange={handleMeetingIdChange} />
+      <button onClick={handleJoinMeeting}>Join Meeting</button>
+      <button onClick={handleBack}>Back</button>
     </div>
   );
 }
