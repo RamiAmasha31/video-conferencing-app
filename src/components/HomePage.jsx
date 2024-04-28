@@ -55,7 +55,7 @@ function HomePage({ theme }) {
         }}
       >
         <Box sx={{ position: 'absolute', textAlign: 'center', color: 'white' }}>
-          <Typography variant="h3">Welcome to Your App</Typography>
+          <Typography variant="h3">Welcome to RM - VIDEO CONFERENCING</Typography>
           <Typography variant="h6">Where virtual meetings come to life</Typography>
         </Box>
       </Grid>
