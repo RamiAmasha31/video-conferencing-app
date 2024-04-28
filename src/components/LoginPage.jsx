@@ -25,7 +25,7 @@ function Copyright(props) {
   );
 }
 
-function LoginPage({ theme }) {
+function LoginPage({ theme, isLoggedIn, setIsLoggedIn }) { // Accept isLoggedIn and setIsLoggedIn as props
   const [isSignUp, setIsSignUp] = React.useState(false);
   const navigate = useNavigate(); // Initialize useNavigate
 
@@ -48,6 +48,8 @@ function LoginPage({ theme }) {
         const response = await login(email, password); // Call login function with email instead of username
         // localStorage.setItem('token', response.token); // Store token in local storage
         console.log('signin successful!');
+        setIsLoggedIn(true); // Update isLoggedIn state to true after successful login
+
         navigate("/home");
 
         // Handle sign-in form submission

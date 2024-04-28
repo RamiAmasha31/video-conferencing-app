@@ -1,16 +1,15 @@
-// App.js
-
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { FaSun, FaMoon } from "react-icons/fa"; // Import icons from react-icons
+import { MdHome, MdExitToApp } from "react-icons/md";
 import LoginPage from "./components/LoginPage.jsx";
 import HomePage from "./components/HomePage.jsx";
 import CreateMeeting from "./components/CreateMeeting.jsx";
 import JoinMeeting from "./components/JoinMeeting.jsx";
-import "./styles/tailwind.css"; // Import Tailwind CSS
+import Logs from "./components/Logs.jsx";
+import "./styles/tailwind.css";
 
 const App = () => {
-  // State for current theme (true for light, false for dark)
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage isLoggedIn state
   const [isLightTheme, setIsLightTheme] = useState(true);
 
   // Function to toggle the theme
@@ -27,18 +26,30 @@ const App = () => {
   return (
     <Router>
       <div className={`min-h-screen ${backgroundColor} relative`}>
-        <button
-          className="absolute top-4 right-4 bg-transparent text-gray-700 hover:text-gray-900"
-          onClick={toggleTheme}
-        >
-          {isLightTheme ? (
-            <FaMoon size={24} className="text-green-500" /> // Set moon color to green-400
-          ) : (
-            <FaSun size={24} className="text-yellow-600" /> // Set sun color to yellow-800
-          )}{" "}
-        </button>
+        <div className="absolute top-4 right-4">
+          {/* Conditionally render home and exit icons based on isLoggedIn state */}
+          {isLoggedIn ? (
+            <React.Fragment>
+              <button className="bg-transparent text-gray-700 hover:text-gray-900 mr-4">
+                <MdHome size={24} />
+              </button>
+              <button
+                className="bg-transparent text-gray-700 hover:text-gray-900 mr-4"
+                onClick={() => setIsLoggedIn(false)} // Logout action
+              >
+                <MdExitToApp size={24} />
+              </button>
+            </React.Fragment>
+          ) : null}
+        </div>
         <Routes>
-          <Route exact path="/" element={<LoginPage theme={themeClass} />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <LoginPage theme={themeClass} setIsLoggedIn={setIsLoggedIn} />
+            }
+          />
           <Route exact path="/home" element={<HomePage theme={themeClass} />} />
           <Route
             exact
@@ -49,6 +60,11 @@ const App = () => {
             exact
             path="/join-meeting"
             element={<JoinMeeting theme={themeClass} />}
+          />
+          <Route
+            exact
+            path="/conference-log"
+            element={<Logs theme={themeClass} />}
           />
         </Routes>
       </div>
