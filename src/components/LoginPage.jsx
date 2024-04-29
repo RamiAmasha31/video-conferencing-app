@@ -27,7 +27,7 @@ function Copyright(props) {
 
 function LoginPage({ theme, isLoggedIn, setIsLoggedIn }) { // Accept isLoggedIn and setIsLoggedIn as props
   const [isSignUp, setIsSignUp] = React.useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
